@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #888
+}
+
+.container__app {
+    background: #ff0000;
+    position: relative;
+}
+
+.app {
+    position: relative;
+    width: 100%;
+}
+
+.container__panels {
+    position: relative;
+    display: flex;
+    /* flex-direction: row; */
+    background: #222;
+}
+
+.progress__bar {
+    height: 5px;
+    width: 100%;
+    background: #000;
+}
+
+.progress__bar__percentage {
+    background: green;
+    width: 10%;
+    height: 100%;
+}
+
+.left__panel {
+    position: relative;
+    margin: 10px 0 0 0;
+    background: #333;
+    height: 100vh;
+    width: 35%;
+    text-align: center;
+}
+
+.cover {
+    margin-top: 10%;
+}
+
+.cover__image {
+    width: 50%;
+    height: auto;
+}
+
+.title__player {
+    margin-top: 1rem;
+}
+
+.songs__counter {
+    margin-top: 1rem;
+}
+
+.play__button {
+    margin-top: 1rem;
+}
+
+.right__panel {
+    position: relative;
+    background: #555;
+    height: 100vh;
+    width: 65%;
+    margin: 10px 0 0 0;
+}
+
+.play__module {
+    /* height: 10rem; */
+    width: 100%;
+    background: #111;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.play__module__content {
+    margin: 0.5rem;
+    height: 3rem;
+    background: #888;
+    display: flex;
+    /* align-items: stretch; */
+}
+
+.play__button__right {
+    position: relative;
+    width: 10%;
+    background: #000055;
+    text-align: center;
+    /* padding: 0; */
+}
+
+.title__area {
+    width: 70%;
+    background: #330055;
+}
+
+.title__album {}
+
+.title__song {}
+
+.song__length {
+    width: 20%;
+    background: #003300;
+}
+
+a {
+    text-decoration: none;
+    position: relative;
+    top: 50%;
+    bottom: 50%;
+    transform: translateY(-100%);
+    background-color: #ff0000;
+}

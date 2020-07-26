@@ -12,29 +12,36 @@
 
 <body>
 
-  <main class="container">
+  <main class="container__app">
     <div class="app">
       <div class="progress__bar">
         <div class="progress__bar__percentage">
         </div>
       </div>
-      <div class="left__panel">
-        <div class="cover"></div>
-        <div class="title__player">
+      <div class="container__panels">
+        <div class="left__panel">
+          left panel
+          <div class="cover"><img src="/images/cover1.png" alt="Cover1" class="cover__image"></div>
+          <div class="title__player">Miki player</div>
+          <div class="songs__counter">5 songs</div>
+          <!-- <div class="play__button"> -->
+          <button class="play__button">PLAY</button>
+          <!-- </div> -->
         </div>
-        <div class="songs__counter"></div>
-        <div class="play__button"></div>
-      </div>
-      <div class="right__panel">
-        <div class="play__module">
-          <div class="play_button"></div>
-          <div class="title_area">
-            <div class="title__album"></div>
-            <div class="title__song"></div>
+        <div class="right__panel">
+          <div class="play__module">
+            <div class="play__module__content">
+              <div class="play__button__right"><a href="" class="play__link">&#9658;</a></div>
+              <div class="title__area">
+                <div class="title__album">miki album</div>
+                <div class="title__song">miki song</div>
+              </div>
+              <div class="song__length">13:37</div>
+            </div>
           </div>
-          <div class="song__length"></div>
         </div>
       </div>
+    </div>
   </main>
 
   <script src="js/app.js" type="module"></script>
