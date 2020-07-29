@@ -20,7 +20,8 @@ const songsList = [{
     "time": "05:52",
     "title": "Bocian Bocian Ga Ga Ga",
     "artist": "Bocian team"
-  }]
+  }
+]
 
 // caching the DOM
 
@@ -30,5 +31,31 @@ const playButtonLeftEl = document.querySelector(".play__button");
 const playButtonRightEl = document.querySelector(".play__button__right");
 const titleAlbumEl = document.querySelector(".title__album");
 const titleSongEl = document.querySelector(".title__song");
-const songDuration = document.querySelector("song__duration");
+const songDuration = document.querySelector(".song__duration");
+const audio = document.querySelector("audio");
 
+
+// Objects and methods
+
+let songId = 0;
+
+const play = () => {
+  playButtonRightEl.addEventListener("click", function () {
+    if (audio.paused) {
+      audio.play();
+    } else audio.pause();
+  })
+}
+
+const renderPlaylistModule = () => {
+
+  songDuration.innerHTML = songsList[songId]["time"];
+  titleAlbumEl.innerHTML = songsList[songId]["artist"];
+  titleSongEl.innerHTML = songsList[songId]["title"];
+  play();
+
+}
+
+const renderPlaylist = () => {}
+
+renderPlaylistModule();
