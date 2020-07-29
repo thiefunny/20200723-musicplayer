@@ -63,6 +63,10 @@
     margin-top: 1rem;
 }
 
+.play__button:hover {
+    cursor: pointer;
+}
+
 .right__panel {
     position: relative;
     background: #555;
@@ -107,7 +111,8 @@
     align-items: center;
 }
 
-.title__content {}}
+.title__content {}
+}
 
 .title__album {}
 
