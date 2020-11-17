@@ -103,6 +103,9 @@
     align-items: center;
 }
 
+.play__button__right:hover {background-color: white
+}
+
 .title__area {
     position: relative;
     width: 80%;

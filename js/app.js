@@ -1,23 +1,51 @@
 // Songs List
 
-const songsList = [{
-    "id": "1",
-    "url": "../../music/morrowind.mp3",
-    "time": "04:22",
+const song = [{
+    "id": 1,
+    "url": "/music/morrowind.mp3",
+    "time": "30.021917",
     "title": "Morrowind",
     "artist": "Bethesda"
   },
   {
-    "id": "2",
-    "url": "../../music/45 Piosenka dzieci z Bullerbyn.mp3",
-    "time": "03:19",
+    "id": 2,
+    "url": "/music/45 Piosenka dzieci z Bullerbyn.mp3",
+    "time": "68.647688",
     "title": "Dzieci z Bullerbyn",
     "artist": "Astrid Lingren"
   },
   {
-    "id": "3",
-    "url": "../../music/Bocian bocian Ga Ga Ga.mp3",
-    "time": "05:52",
+    "id": 3,
+    "url": "/music/Bocian bocian Ga Ga Ga.mp3",
+    "time": "353.16944",
+    "title": "Bocian Bocian Ga Ga Ga",
+    "artist": "Bocian team"
+  },
+  {
+    "id": 4,
+    "url": "/music/Bocian bocian Ga Ga Ga.mp3",
+    "time": "353.16944",
+    "title": "Bocian Bocian Ga Ga Ga",
+    "artist": "Bocian team"
+  },
+  {
+    "id": 5,
+    "url": "/music/morrowind.mp3",
+    "time": "30.021917",
+    "title": "Morrowind",
+    "artist": "Bethesda"
+  },
+  {
+    "id": 6,
+    "url": "/music/45 Piosenka dzieci z Bullerbyn.mp3",
+    "time": "68.647688",
+    "title": "Dzieci z Bullerbyn",
+    "artist": "Astrid Lingren"
+  },
+  {
+    "id": 7,
+    "url": "/music/Bocian bocian Ga Ga Ga.mp3",
+    "time": "353.16944",
     "title": "Bocian Bocian Ga Ga Ga",
     "artist": "Bocian team"
   }
@@ -31,54 +59,85 @@ const playButtonLeftEl = document.querySelector(".play__button");
 const titleAlbumEl = document.querySelector(".title__album");
 const titleSongEl = document.querySelector(".title__song");
 const songDuration = document.querySelector(".song__duration");
-const audio = document.querySelector("audio");
-let playModule = document.querySelector(".play__module");
+const rightPanel = document.querySelector(".right__panel");
+const progressBarPercentage = document.querySelector(".progress__bar__percentage");
+const progressBar = document.querySelector(".progress__bar");
 
 // Objects and methods
 
-let songId = 0;
+songsCounterEl.innerHTML = `${song.length} songs`;
 
-const createModule = () => {
-  let html = '';
+// GENERATING PLAYER MODULE
+
+const createModule = (playModule, song) => {
+
   playModule.innerHTML = `
-  <div class="play__module__content">
-    <div class="play__button__right">
-        &#9658; 
-        <audio src="music/morrowind.mp3"></audio>
+<div class="play__module__content">
+  <div class="play__button__right">
+      &#9658;
+      <audio src="${song["url"]}"></audio>
+  </div>
+  <div class="title__area">
+    <div class="title__content">
+      <p class="title__album">${song["title"]}</p>
+      <p class="title__song">${song["artist"]}</p>
     </div>
-    <div class="title__area">
-      <div class="title__content">
-        <p class="title__album">${songsList[songId]["title"]}</p>
-        <p class="title__song">${songsList[songId]["artist"]}</p>
-      </div>
-    </div>
-    <div class="song__duration">${songsList[songId]["time"]}</div>
-  </div>`
+  </div>
+  <div class="song__duration">${song["time"]}</div>
+</div>`
 }
 
-createModule();
+
+// GENERATING PLAYLIST
+
+const renderPlaylistModule = () => {
+
+  for (let elem of song) {
+    rightPanel.innerHTML += `<div class="play__module" id="play__module__${elem["id"]}">    </div>`
+    let playModule = document.querySelector(`#play__module__${elem["id"]}`);
+    createModule(playModule, elem);
+  }
+}
+
+renderPlaylistModule();
 
 const playButtonRightEl = document.querySelector(".play__button__right");
+const playButtons = document.querySelectorAll(".play__button__right");
+
+// PLAY ACTION
 
 const play = () => {
-  playButtonRightEl.addEventListener("click", function () {
-    if (audio.paused) {
-      audio.play();
-    } else audio.pause();
-  })
+
+  for (let elem of playButtons) {
+    let audioEl = elem.firstElementChild;
+    elem.addEventListener("click", function () {
+      if (audioEl.paused) {
+        audioEl.play();
+        let gui = setInterval(function () {
+          progressBarPercentage.style.width = `${audioEl.currentTime / audioEl.duration * 100}%`;
+        }, 100)
+        console.log(audioEl.duration);
+      } else {
+        
+        audioEl.pause();
+        clearInterval(gui)
+      }
+    })
+  }
 }
 
 play();
 
-// const renderPlaylistModule = () => {
+// PROGRESS BAR
 
-//   songDuration.innerHTML = songsList[songId]["time"];
-//   titleAlbumEl.innerHTML = songsList[songId]["artist"];
-//   titleSongEl.innerHTML = songsList[songId]["title"];
-//   play();
+// const progress = () => {
+
+//   setInterval(function() {
+
+//     progressBarPercentage.style.width = `${Math.random()*100}%`;
+//   }, 100)
+
 
 // }
 
-const renderPlaylist = () => {}
-
-// renderPlaylistModule();
+// progress();
