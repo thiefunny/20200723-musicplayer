@@ -63,6 +63,7 @@ const rightPanel = document.querySelector(".right__panel");
 const progressBarPercentage = document.querySelector(".progress__bar__percentage");
 const progressBar = document.querySelector(".progress__bar");
 
+
 // Objects and methods
 
 songsCounterEl.innerHTML = `${song.length} songs`;
@@ -103,41 +104,65 @@ renderPlaylistModule();
 
 const playButtonRightEl = document.querySelector(".play__button__right");
 const playButtons = document.querySelectorAll(".play__button__right");
+// const playModule = document.querySelectorAll(".play__module");
+
+
 
 // PLAY ACTION
+let chosenSong;
+let timerInterval;
 
 const play = () => {
 
   for (let elem of playButtons) {
+    
+/*     let playModule = elem.parentElement.parentElement;
+    console.log(playModule);
+
+    playModule.addEventListener("mouseover", function() {
+      playModule.classList.toggle("playmodulemouseoverbackground");
+    })    
+    playModule.addEventListener("mouseout", function() {
+      playModule.classList.toggle("playmodulemouseoverbackground");
+    })   
+    playModule.addEventListener("click", function() {
+      console.log("clicked");
+    }) */
+
     let audioEl = elem.firstElementChild;
+    progressBarPercentage.style.width = `0px`;
     elem.addEventListener("click", function () {
+
       if (audioEl.paused) {
         audioEl.play();
-        let gui = setInterval(function () {
+        timerInterval = setInterval(function () {
           progressBarPercentage.style.width = `${audioEl.currentTime / audioEl.duration * 100}%`;
-        }, 100)
-        console.log(audioEl.duration);
+        }, 10);
+
       } else {
-        
         audioEl.pause();
-        clearInterval(gui)
+        clearInterval(timerInterval);
       }
     })
+
+    playButtonLeftEl.addEventListener("click", function () {
+
+      if (audioEl.paused) {
+        audioEl.play();
+        timerInterval = setInterval(function () {
+          progressBarPercentage.style.width = `${audioEl.currentTime / audioEl.duration * 100}%`;
+        }, 10);
+
+      } else {
+        audioEl.pause();
+        clearInterval(timerInterval);
+      }
+    })
+
+
+
   }
 }
 
 play();
 
-// PROGRESS BAR
-
-// const progress = () => {
-
-//   setInterval(function() {
-
-//     progressBarPercentage.style.width = `${Math.random()*100}%`;
-//   }, 100)
-
-
-// }
-
-// progress();
